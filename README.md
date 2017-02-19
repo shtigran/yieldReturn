@@ -36,4 +36,21 @@ Methods that contain unsafe blocks.
 A yield return statement can't be located in a try-catch block. A yield return statement can be located in the try block of a try-finally statement.
 A yield break statement can be located in a try block or a catch block but not a finally block.
 If the foreach body (outside of the iterator method) throws an exception, a finally block in the iterator method is executed.
+
 ----
+
+# Technical Implementation
+
+The following code returns an IEnumerable<string> from an iterator method and then iterates through its elements.
+```C#
+IEnumerable<string> elements = MyIteratorMethod();  
+foreach (string element in elements)  
+{  
+   …  
+}  
+```
+The call to MyIteratorMethod doesn't execute the body of the method. Instead the call returns an IEnumerable<string> into the elements variable.
+On an iteration of the foreach loop, the MoveNext method is called for elements. This call executes the body of MyIteratorMethod until the next yield return statement is reached. The expression returned by the yield return statement determines not only the value of the element variable for consumption by the loop body but also the Current property of elements, which is an IEnumerable<string>.
+On each subsequent iteration of the foreach loop, the execution of the iterator body continues from where it left off, again stopping when it reaches a yield return statement. The foreach loop completes when the end of the iterator method or a yield break statement is reached.
+----
+
