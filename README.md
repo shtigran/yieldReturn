@@ -59,3 +59,7 @@ On each subsequent iteration of the foreach loop, the execution of the iterator 
 
 ----
 
+# Example description
+
+The following example has a yield return statement that's inside a for loop. Each iteration of the foreach statement body in Process creates a call to the Power iterator function. Each call to the iterator function proceeds to the next execution of the yield return statement, which occurs during the next iteration of the for loop.
+The return type of the iterator method is IEnumerable, which is an iterator interface type. When the iterator method is called, it returns an enumerable object that contains the powers of a number.
