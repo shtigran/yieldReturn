@@ -20,7 +20,7 @@ yield break;
 You use a yield return statement to return each element one at a time.
 You consume an iterator method by using a foreach statement or LINQ query. Each iteration of the foreach loop calls the iterator method. When a yield return statement is reached in the iterator method, expression is returned, and the current location in code is retained. Execution is restarted from that location the next time that the iterator function is called.
 You can use a yield break statement to end the iteration.
-
+----
 # Iterator Methods and get Accessors
 
 The declaration of an iterator must meet the following requirements:
@@ -30,3 +30,10 @@ The yield type of an iterator that returns IEnumerable or IEnumerator is object.
 You can't include a yield return or yield break statement in methods that have the following characteristics:
 Anonymous methods. For more information.
 Methods that contain unsafe blocks. 
+----
+# Exception Handling
+
+A yield return statement can't be located in a try-catch block. A yield return statement can be located in the try block of a try-finally statement.
+A yield break statement can be located in a try block or a catch block but not a finally block.
+If the foreach body (outside of the iterator method) throws an exception, a finally block in the iterator method is executed.
+----
