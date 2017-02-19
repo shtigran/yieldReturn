@@ -91,3 +91,15 @@ static void Main(string[] args)
         // Output: 2 4 8 16 32 64 128 256
     }
 ```
+----
+----
+
+# Speaking popular language
+
+Use yield-return when You calculate the next item in the list (or even the next group of items).
+
+Using your Version 2, you must have the complete list before returning. By using yield-return, you really only need to have the next item before returning.
+
+Among other things, this helps spread the computational cost of complex calculations over a larger time-frame. For example, if the list is hooked up to a GUI and the user never goes to the last page, you never calculate the final items in the list.
+
+Another case where yield-return is preferable is if the IEnumerable represents an infinite set. Consider the list of Prime Numbers, or an infinite list of random numbers. You can never return the full IEnumerable at once, so you use yield-return to return the list incrementally.
