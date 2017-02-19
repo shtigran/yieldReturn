@@ -63,3 +63,31 @@ On each subsequent iteration of the foreach loop, the execution of the iterator 
 
 The following example has a yield return statement that's inside a for loop. Each iteration of the foreach statement body in Process creates a call to the Power iterator function. Each call to the iterator function proceeds to the next execution of the yield return statement, which occurs during the next iteration of the for loop.
 The return type of the iterator method is IEnumerable, which is an iterator interface type. When the iterator method is called, it returns an enumerable object that contains the powers of a number.
+
+# Example code
+```C#
+static void Main(string[] args)
+        {
+            // Display powers of 2 up to the exponent of 8:
+            foreach (int i in Power(2, 8))
+            {
+                Console.Write("{0} ", i);
+            }
+
+            Console.ReadKey();
+        }
+
+        public static IEnumerable<int> Power(int number, int exponent)
+        {
+            int result = 1;
+
+            for (int i = 0; i < exponent; i++)
+            {
+                result = result * number;
+                yield return result;
+            }
+        }
+
+        // Output: 2 4 8 16 32 64 128 256
+    }
+```
